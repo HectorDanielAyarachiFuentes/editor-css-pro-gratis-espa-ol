@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Ayarachi Visual CSS Editor",
+  "version": "7.6.0",
+  "description": "Customize any website visually.",
+  "author": "AYARACHI",
+  "action": {},
+  "icons": {
+    "16": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://github.com/HectorDanielAyarachiFuentes/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "editor.html",
+        "editor/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
