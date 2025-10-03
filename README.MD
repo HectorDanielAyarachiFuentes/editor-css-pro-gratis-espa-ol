@@ -1,7 +1,32 @@
 # Editor CSS Pro
 
-
 ¡Bienvenido a **Editor CSS Pro**! Una herramienta poderosa y gratuita, diseñada como una extensión para navegadores, que te permite editar el estilo CSS de cualquier página web en tiempo real y de forma visual.
+
+## Guía de Instalación
+
+1.  **Descarga la extensión:**
+    Ve al repositorio de GitHub y descarga la carpeta `1.0.0. Version Ayarachi`.
+
+    <p align="center">
+      <img src="https://github.com/HectorDanielAyarachiFuentes/editor-css-pro-gratis-espa-ol/blob/main/img-readme/descargasolamentelacarpetade1.0.0Versionayarachi.png?raw=true" alt="Descargar la extensión" width="600"/>
+    </p>
+
+2.  **Activa el modo desarrollador en tu navegador:**
+    Abre la página de extensiones de tu navegador (por ejemplo, `chrome://extensions`), y asegúrate de que el "Modo desarrollador" esté activado.
+
+3.  **Instala la extensión:**
+    Haz clic en "Cargar descomprimida" y selecciona la carpeta `1.0.0. Version Ayarachi` que descargaste.
+
+    <p align="center">
+      <img src="https://github.com/HectorDanielAyarachiFuentes/editor-css-pro-gratis-espa-ol/blob/main/img-readme/comoinstalar.png?raw=true" alt="Instalar la extensión" width="600"/>
+    </p>
+
+4.  **¡Listo para usar!**
+    Ahora puedes abrir cualquier página web, hacer clic en el ícono de la extensión y empezar a editar.
+
+    <p align="center">
+      <img src="https://github.com/HectorDanielAyarachiFuentes/editor-css-pro-gratis-espa-ol/blob/main/img-readme/laextensionfuncionando.png?raw=true" alt="Extensión funcionando" width="600"/>
+    </p>
 
 ## ¿Qué es Editor CSS Pro?
 
