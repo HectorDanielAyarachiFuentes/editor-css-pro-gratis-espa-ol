@@ -1,0 +1,21 @@
+{
+   "action": {
+      "default_title": "Abrir Editor CSS"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "description": "Una herramienta para editar el estilo de cualquier web fácilmente.",
+   "icons": {
+      "128": "icon.png",
+      "16": "icon.png"
+   },
+   "manifest_version": 3,
+   "name": "Mi Editor CSS",
+   "permissions": [ "activeTab", "scripting" ],
+   "version": "1.0.0",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "starter.js", "editor/*" ]
+   } ]
+}

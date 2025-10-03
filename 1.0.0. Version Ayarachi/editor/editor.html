@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="robots" content="noindex">
+	<meta name="google" value="notranslate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<title>Editor Visual de CSS</title>
+	<style>
+		body,html{overflow:hidden}.wyp-iframe-loader{display:block;width:100%;height:100%;top:0;left:0;position:fixed;background-color:#fff;z-index:2147483646}#loader{background-color:#ccc;height:2px;width:200px;position:fixed;top:50%;left:50%;margin-left:-100px;margin-top:18px;border-radius:8px}#loader i{background-color:#1592e6;width:10%;position:absolute;height:4px;margin-top:-1px;-webkit-transition:width .1s;transition:width .1s;border-radius:8px}.loading-files{width:130px;height:24px;top:50%;color:#6a6a6a;text-align:center;font-size:12px;left:50%;position:fixed;margin-left:-65px;margin-top:-12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif!important;font-weight:600}
+	</style>
+	</head><body class="yp-yellow-pencil wyp-met-dis wyp-flexible-inspector-active">
+
+	<div class="wyp-iframe-loader">
+		<div id="loader"><i></i></div>
+		<div class="loading-files">Cargando Editor ✨</div>
+	</div>
+
+		<iframe id="iframe" class="yellow_pencil_iframe" tabindex="-1"></iframe>
+
+
+	<div id="ed-elt-tr"><ul></ul></div>
+
+	<div id="vsl-css-vi">
+		<div class="css-view-top">
+			<span class="yicon icon-filter"></span>
+			<input id="visual-rule-filter" placeholder="Filter.." type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+			<div class="visual-manager-close"></div>
+		</div>
+		<div id="vsl-css-co"></div>
+	</div>
+
+	<span class='yicon icon-admin-collapse wyp-panel-show'></span>
+
+
+	
+
+	<div class="responsive-right-handle"></div>
+	<div class="responsive-left-handle"></div>
+	<span class="responsive-add-breakpoint"><span class="yicon icon-plus"></span></span>
+	<div class="responsive-size-text"><span class='device-size'></span>px y pantallas <span class='media-control' data-code='max-width'>más pequeñas</span></div>
+
+	<div class='ed-pnl wyp-disable-cancel'>
+        <div class='ed-pnl-top'>
+
+            <a class='wf-close-btn-link' tabindex='-1'><span data-toggle='tooltip' data-placement='left' title='Cerrar Editor' class='wyp-close-btn'></span></a>
+
+            <a class='wyp-button wyp-save-btn wyp-disabled'>Exportar</a>
+
+            <a data-toggle='tooltipTopBottom' data-placement='bottom' title='Revisar Cambios <span class="wyp-s-shortcut">(C)</span>' class='wyp-button-manage'></a>
+
+
+            <div class='wyp-clear'></div>
+
+        </div><div id='property-responsive-menu'></div><div class='ed-pnl-inner'><div class='wyp-csng-sec'>
+                <div class='wyp-customizing-inner'>
+                <div id='customizing-mode' data-this-type='global' class='wyp-type-menu-link'><span class='type-heading'>Global</span> <span class='yicon icon-arrow-down'></span></div><div id='c-t-list'><ul><li data-value='single' class=''><i class='manage-this-type'></i><i class='reset-this-type'></i><h6><span><span class='current-type'></span>Página "Home"</span><small class='type-byte'><span>vacío</span><i>modificado</i></small></h6><p>Aplicar estilo solo a la página actual.</p></li><li data-value="template" class="type-disabled"><i class="manage-this-type"></i><i class="reset-this-type"></i><h6><span><span class="current-type"></span>Plantilla "Página"</span><small class="type-byte"><span>vacío</span><i>modificado</i></small></h6><p>Aplicar estilo a todas las páginas del tipo de entrada actual.</p></li><li data-value="global" class="active-customizing-list"><i class="manage-this-type"></i><i class="reset-this-type"></i><h6><span><span class="current-type"></span>Global</span><small class="type-byte"><span>vacío</span><i>modificado</i></small></h6><p>Aplicar estilo a todo el sitio web.</p></li><li id="wyp-current-page"><h6>Personalizar otra página</h6></li></ul></div>
+                <div class='wyp-clear'></div>
+                <div id='wyp-crnt-el'>Ningún elemento seleccionado</div>
+                </div>
+        </div><form autocomplete='off' spellcheck='false' autocorrect='off' autocapitalize='off'><ul class='ed-pnl-list list-active'>
+
+		<li class='text-option'>
+			<h3>Texto</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='font-family-group' class='op-g se-o' data-css='font-family'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece una familia de fuentes.'>Familia de Fuente</span><i class='mo-i'></i><label id="include-webfont-label"><input type="checkbox" checked="checked"><span class="include-webfont-input"></span></label></span><textarea tabindex='-1' disabled='disabled'>`+chrome.runtime.getURL('editor/')+`json/google-fonts.json</textarea><div class='ac-p-d'><input id='wyp-font-family' type='text' class='in-ac' value='' /><div id='ac-pl-font-family' class='ac-d'></div></div></div></div>
+
+				<div class='option-group-class option-group-vn-p'>
+				<div id='color-group' class='op-g co-o' data-css='color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el color del texto.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+				<div id='font-weight-group' class='op-g se-o' data-css='font-weight'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el grosor de los caracteres en el texto.'>Grosor</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"300","label":"Light 300", "category":""},{"value":"400","label":"normal 400", "category":""},{"value":"500","label":"Semi-Bold 500", "category":""},{"value":"600","label":"Bold 600", "category":""},{"value":"700","label":"Extra-Bold 700", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-font-weight' type='text' class='in-ac' value='' /><div id='ac-pl-font-weight' class='ac-d'></div></div></div></div>
+				</div>
+
+				<div id='font-size-group' class='op-g sl-o' data-css='font-size' data-decimals='1' data-px='8,100' data-pc='0,100' data-em='1,6'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el tamaño de una fuente.'>Tamaño de Fuente</span><i class='mo-i'></i></span><div id='wyp-font-size' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='font-size-value' class='css-va' /><input type='text' id='font-size-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='line-height-group' class='op-g sl-o' data-css='line-height' data-decimals='0.1' data-px='0,100' data-pc='0,100' data-em='1,6'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el interlineado.'>Altura de Línea</span><i class='mo-i'></i></span><div id='wyp-line-height' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='line-height-value' class='css-va' /><input type='text' id='line-height-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div class='option-group-class option-group-less'>
+				<div id='font-style-group' class='op-g ra-o' data-css='font-style'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el estilo de fuente para un texto.'>Estilo</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-font-style'><div class="ra"><input type="radio" name="font-style" value="normal"><label id="font-style-normal">normal</label></div><div class="ra"><input type="radio" name="font-style" value="italic"><label id="font-style-italic">itálica</label></div></div></div></div>
+
+				<div id='text-transform-group' class='op-g ra-o' data-css='text-transform'><div class='op-c'><span class='op-l'><span class='di-btn' title='Controla las mayúsculas del texto.'>Transformar</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-text-transform'><div class="ra"><input type="radio" name="text-transform" value="none"><label id="text-transform-none">no</label></div><div class="ra"><input type="radio" name="text-transform" value="capitalize"><label id="text-transform-capitalize">Aa</label></div><div class="ra"><input type="radio" name="text-transform" value="uppercase"><label id="text-transform-uppercase">AA</label></div><div class="ra"><input type="radio" name="text-transform" value="lowercase"><label id="text-transform-lowercase">aa</label></div></div></div></div>
+				</div>
+
+				<div class='option-group-class option-group-less'>
+				<div id='text-decoration-group' class='op-g ra-o' data-css='text-decoration'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica la decoración añadida al texto.'>Decoración</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-text-decoration'><div class="ra"><input type="radio" name="text-decoration" value="none"><label id="text-decoration-none">A</label></div><div class="ra"><input type="radio" name="text-decoration" value="overline"><label id="text-decoration-overline">A</label></div><div class="ra"><input type="radio" name="text-decoration" value="line-through"><label id="text-decoration-line-through">A</label></div><div class="ra"><input type="radio" name="text-decoration" value="underline"><label id="text-decoration-underline">A</label></div></div></div></div>
+
+				<div id='text-align-group' class='op-g ra-o' data-css='text-align'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica la alineación horizontal del texto en un elemento.'>Alinear</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-text-align'><div class="ra"><input type="radio" name="text-align" value="left"><label id="text-align-left"><span class="yicon icon-editor-alignleft"></span></label></div><div class="ra"><input type="radio" name="text-align" value="center"><label id="text-align-center"><span class="yicon icon-editor-aligncenter"></span></label></div><div class="ra"><input type="radio" name="text-align" value="right"><label id="text-align-right"><span class="yicon icon-editor-alignright"></span></label></div><div class="ra"><input type="radio" name="text-align" value="justify"><label id="text-align-justify"><span class="yicon icon-editor-justify"></span></label></div></div></div></div>
+				</div>
+
+				<div class='option-group-class option-group-less'>
+				<div id='text-shadow-group' class='op-g se-o' data-css='text-shadow'><div class='op-c'><span class='op-l'><span class='di-btn' title='Añade sombra al texto.'>Sombra de Texto</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"none","label":"ninguna", "category":""},{"value":"rgba(0, 0, 0, 0.3) 0px 1px 1px","label":"Sombra Básica", "category":""},{"value":"rgb(255, 255, 255) 1px 1px 0px, rgb(170, 170, 170) 2px 2px 0px","label":"Sombra Múltiple", "category":""},{"value":"rgb(255, 0, 0) -1px 0px 0px, rgb(0, 255, 255) 1px 0px 0px","label":"Anaglifo", "category":""},{"value":"rgb(255, 255, 255) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px","label":"Relieve", "category":""},{"value":"rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 6px, rgb(255, 119, 255) 0px 0px 8px, rgb(255, 0, 255) 0px 0px 12px, rgb(255, 0, 255) 0px 0px 16px, rgb(255, 0, 255) 0px 0px 20px, rgb(255, 0, 255) 0px 0px 24px","label":"Neón", "category":""},{"value":"rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px","label":"Contorno", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-text-shadow' type='text' class='in-ac' value='' /><div id='ac-pl-text-shadow' class='ac-d'></div></div></div></div>
+
+				<div id='white-space-group' class='op-g se-o' data-css='white-space'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica cómo se maneja el espacio en blanco dentro de un elemento.'>Salto de línea</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"normal","label":"Normal", "category":""},{"value":"nowrap","label":"Sin salto", "category":""},{"value":"pre","label":"Pre", "category":""},{"value":"pre-line","label":"Pre-línea", "category":""},{"value":"pre-wrap","label":"Pre-salto", "category":""},{"value":"break-spaces","label":"Romper espacios", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-white-space' type='text' class='in-ac' value='' /><div id='ac-pl-white-space' class='ac-d'></div></div></div></div>
+				</div>
+
+				<div id='letter-spacing-group' class='op-g sl-o' data-default='normal' data-css='letter-spacing' data-decimals='0.1' data-px='-5,10' data-pc='0,100' data-em='-1,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Aumenta o disminuye el espacio entre caracteres en un texto.'>Espaciado de Letras</span><i class='mo-i'></i></span><div id='wyp-letter-spacing' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='letter-spacing-value' class='css-va' /><input type='text' id='letter-spacing-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='word-spacing-group' class='op-g sl-o' data-default='normal' data-css='word-spacing' data-decimals='0.1' data-px='-5,20' data-pc='0,100' data-em='-1,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Aumenta o disminuye el espacio en blanco entre palabras.'>Espaciado de Palabras</span><i class='mo-i'></i></span><div id='wyp-word-spacing' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='word-spacing-value' class='css-va' /><input type='text' id='word-spacing-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div class='option-group-class option-group-less cl-direction'>
+					<div id='column-count-group' class='op-g sl-o' data-css='column-count' data-decimals='1' data-px='1,12' data-pc='1,12' data-em='1,12'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el número de columnas en las que se debe dividir un elemento.'>Columnas</span><i class='mo-i'></i></span><div id='wyp-column-count' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='column-count-value' class='css-va' /><input type='text' id='column-count-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='direction-group' class='op-g ra-o' data-css='direction'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica la dirección del texto/escritura dentro de un elemento de bloque.'>Dirección</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-direction'><div class="ra"><input type="radio" name="direction" value="ltr"><label id="direction-ltr">izquierda</label></div><div class="ra"><input type="radio" name="direction" value="rtl"><label id="direction-rtl">derecha</label></div></div></div></div>
+				</div>
+
+			</div>
+		</li><li class='background-option'>
+			<h3>Fondo</h3>
+			<div class='wyp-t-cont'><div id='background-type-group' class='op-g ra-o' data-css='background-type'><div class='op-c'><span class='op-l'><span class='di-btn' title='Tipo de Fondo'>Tipo de Fondo</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-background-type'><div class="ra"><input type="radio" name="background-type" value="background"><label id="background-type-background">fondo</label></div><div class="ra"><input type="radio" name="background-type" value="filter"><label id="background-type-filter">filtros de fondo</label></div></div></div></div><div class='wyp-background-background-section'>
+				<div id='background-color-group' class='op-g co-o' data-css='background-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el color de fondo de un elemento.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-background-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+				<div id='background-image-group' class='op-g in-o' data-css='background-image'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la imagen de fondo para un elemento.'>Imagen</span><i class='mo-i'></i> </span><div class='in-wr'><input placeholder='ninguna' id='wyp-background-image' type='text' class='wyp-input' value='' /><span class='wyp-upload-btn wyp-gallery-btn'></span><span class='wyp-clear-btn yicon icon-no-alt'></span></div><div style='clear:both;'></div><a class='wyp-unsplash-btn'>Imágenes de Stock</a><a data-json='`+chrome.runtime.getURL('editor/')+`json/gradients.json' class='wyp-gradient-btn'>Gradientes</a><div style='clear:both;'></div><div class="wyp-gradient-section"><div class="gradient-editor"><div class="wyp-gradient-bar-background"><div class="wyp-gradient-bar"></div><div class="wyp-gradient-pointer-area"></div></div><input id="iris-gradient-color" type="text" /><div class="wyp-gradient-space"></div><div class="wyp-gradient-orientation" data-degree="90"><b>Orientación</b><i></i></div></div><div class="wyp-gradient-list"></div><div class="uigradient-api">por <a target="_blank" href="https://uigradients.com">uiGradients</a></div></div><div class='wyp-unsplash-section'><div class='wyp-unsplash-inner'><input id='unsplash-search' type='text' value='' placeholder='Buscar una imagen' /><div class='wyp-unsplash-list'></div></div><div class="unsplash-api">por <a target="_blank" href="https://unsplash.com">Unsplash</a></div></div></div></div>
+
+				<div id='background-size-group' class='op-g ra-o' data-css='background-size'><div class='op-c'><span class='op-l'><span class='di-btn' title='El tamaño de la imagen de fondo.'>Tamaño</span><i class='mo-i'></i>  </span><div class='ra-gr-3 ra-c' id='wyp-background-size'><div class="ra"><input type="radio" name="background-size" value="auto"><label id="background-size-auto">personalizado</label></div><div class="ra"><input type="radio" name="background-size" value="cover"><label id="background-size-cover">cubrir</label></div><div class="ra"><input type="radio" name="background-size" value="contain"><label id="background-size-contain">contener</label></div></div></div><div class='background-size-custom-group wyp-after'><div class='background-size-x-group'><input type='text' id='background-size-x-value' class='wyp-bgs-css-val' /><input type='text' id='background-size-x-custom' class='wyp-bgs-prefix' /><span class='property-title'>Ancho</span><div class='un-s'></div></div><div class='background-size-y-group'><input type='text' id='background-size-y-value' class='wyp-bgs-css-val' /><input type='text' id='background-size-y-custom' class='wyp-bgs-prefix' /><span class='property-title'>Altura</span><div class='un-s'></div></div></div></div>
+
+				<div class='option-group-class background-cgn'>
+				<div id='background-blend-mode-group' class='op-g se-o' data-css='background-blend-mode'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el modo de fusión del color y la imagen de fondo.'>Modo de Fusión</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"normal","label":"normal", "category":""},{"value":"multiply","label":"multiplicar", "category":""},{"value":"screen","label":"pantalla", "category":""},{"value":"overlay","label":"superponer", "category":""},{"value":"darken","label":"oscurecer", "category":""},{"value":"lighten","label":"aclarar", "category":""},{"value":"color-dodge","label":"sobreexponer color", "category":""},{"value":"saturation","label":"saturación", "category":""},{"value":"color","label":"color", "category":""},{"value":"luminosity","label":"luminosidad", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-background-blend-mode' type='text' class='in-ac' value='' /><div id='ac-pl-background-blend-mode' class='ac-d'></div></div></div></div>
+
+				<div id='background-attachment-group' class='op-g ra-o' data-css='background-attachment'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece si una imagen de fondo es fija o se desplaza con el resto de la página.'>Fijo</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-background-attachment'><div class="ra"><input type="radio" name="background-attachment" value="fixed"><label id="background-attachment-fixed">fijo</label></div><div class="ra"><input type="radio" name="background-attachment" value="scroll"><label id="background-attachment-scroll">desplazar</label></div></div></div></div>
+
+				</div>
+
+				<div id='background-position-x-group' class='op-g sl-o' data-css='background-position-x' data-decimals='1' data-px='0,200' data-pc='0,100' data-em='0,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la posición inicial horizontal de una imagen de fondo.'>Posición Horizontal</span><i class='mo-i'></i></span><div id='wyp-background-position-x' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='background-position-x-value' class='css-va' /><input type='text' id='background-position-x-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='background-position-y-group' class='op-g sl-o' data-css='background-position-y' data-decimals='1' data-px='0,200' data-pc='0,100' data-em='0,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la posición inicial vertical de una imagen de fondo.'>Posición Vertical</span><i class='mo-i'></i></span><div id='wyp-background-position-y' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='background-position-y-value' class='css-va' /><input type='text' id='background-position-y-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='background-repeat-group' class='op-g ra-o' data-css='background-repeat'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece si la imagen de fondo se repetirá.'>Mosaico</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-background-repeat'><div class="ra"><input type="radio" name="background-repeat" value="repeat"><label id="background-repeat-repeat"><svg focusable="false" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 1h4v4H1zm5 0h4v4H6zm5 0h4v4h-4zM1 6h4v4H1zm5 0h4v4H6zm5 0h4v4h-4zM1 11h4v4H1zm5 0h4v4H6zm5 0h4v4h-4z"></path></svg></label></div><div class="ra"><input type="radio" name="background-repeat" value="repeat-x"><label id="background-repeat-repeat-x"><svg focusable="false" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6h4v4H1zm5 0h4v4H6zm5 0h4v4h-4z"></path></svg></label></div><div class="ra"><input type="radio" name="background-repeat" value="repeat-y"><label id="background-repeat-repeat-y"><svg focusable="false" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 1h4v4H6zm0 5h4v4H6zm0 5h4v4H6z"></path></svg></label></div><div class="ra"><input type="radio" name="background-repeat" value="no-repeat"><label id="background-repeat-no-repeat"><span class="yicon icon-no-alt"></span></label></div></div></div></div>
+
+				<div id='background-clip-group' class='op-g ra-o' data-css='background-clip'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define hasta dónde debe extenderse el fondo dentro del elemento.'>Recorte</span><i class='mo-i'></i>  </span><div class='ra-gr-3 ra-c' id='wyp-background-clip'><div class="ra"><input type="radio" name="background-clip" value="text"><label id="background-clip-text">texto</label></div><div class="ra"><input type="radio" name="background-clip" value="border-box"><label id="background-clip-border-box">borde</label></div><div class="ra"><input type="radio" name="background-clip" value="padding-box"><label id="background-clip-padding-box">relleno</label></div></div></div></div>
+				</div><div class='wyp-background-filter-section'>
+
+					<div id='blur-backdrop-filter-group' class='op-g sl-o' data-css='blur-backdrop-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Aplica un desenfoque gaussiano al fondo.'>Desenfoque</span><i class='mo-i'></i></span><div id='wyp-blur-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='blur-backdrop-filter-value' class='css-va' /><input type='text' id='blur-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='grayscale-backdrop-filter-group' class='op-g sl-o' data-css='grayscale-backdrop-filter' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Convierte el fondo a escala de grises.'>Escala de Grises</span><i class='mo-i'></i></span><div id='wyp-grayscale-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='grayscale-backdrop-filter-value' class='css-va' /><input type='text' id='grayscale-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='invert-backdrop-filter-group' class='op-g sl-o' data-css='invert-backdrop-filter' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Invierte los colores del fondo.'>Invertir</span><i class='mo-i'></i></span><div id='wyp-invert-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='invert-backdrop-filter-value' class='css-va' /><input type='text' id='invert-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='sepia-backdrop-filter-group' class='op-g sl-o' data-css='sepia-backdrop-filter' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Convierte el fondo a sepia.'>Sepia</span><i class='mo-i'></i></span><div id='wyp-sepia-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='sepia-backdrop-filter-value' class='css-va' /><input type='text' id='sepia-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='brightness-backdrop-filter-group' class='op-g sl-o' data-css='brightness-backdrop-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Ajusta el brillo del fondo.'>Brillo</span><i class='mo-i'></i></span><div id='wyp-brightness-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='brightness-backdrop-filter-value' class='css-va' /><input type='text' id='brightness-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='contrast-backdrop-filter-group' class='op-g sl-o' data-css='contrast-backdrop-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Ajusta el contraste del fondo.'>Contraste</span><i class='mo-i'></i></span><div id='wyp-contrast-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='contrast-backdrop-filter-value' class='css-va' /><input type='text' id='contrast-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='hue-rotate-backdrop-filter-group' class='op-g sl-o' data-css='hue-rotate-backdrop-filter' data-decimals='1' data-px='0,360' data-pc='0,360' data-em='0,360'><div class='op-c'><span class='op-l'><span class='di-btn' title='Aplica una rotación de tono al fondo.'>Rotación de Tono</span><i class='mo-i'></i></span><div id='wyp-hue-rotate-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='hue-rotate-backdrop-filter-value' class='css-va' /><input type='text' id='hue-rotate-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='saturate-backdrop-filter-group' class='op-g sl-o' data-css='saturate-backdrop-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Ajusta la saturación del fondo.'>Saturación</span><i class='mo-i'></i></span><div id='wyp-saturate-backdrop-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='saturate-backdrop-filter-value' class='css-va' /><input type='text' id='saturate-backdrop-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div></div>
+		</li>
+
+		<li class='spacing-option'>
+			<h3>Espaciados</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='spacing-type-group' class='op-g ra-o' data-css='spacing-type'><div class='op-c'><span class='op-l'><span class='di-btn' title=''>Tipo de Espaciado</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-spacing-type'><div class="ra"><input type="radio" name="spacing-type" value="padding"><label id="spacing-type-padding">relleno</label></div><div class="ra"><input type="radio" name="spacing-type" value="margin"><label id="spacing-type-margin">margen</label></div></div></div></div>
+
+				<div class='wyp-spacing-padding-section'>
+					<div id='padding-left-group' class='op-g sl-o' data-css='padding-left' data-decimals='1' data-px='0,200' data-pc='0,100' data-em='0,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el relleno izquierdo (espacio) de un elemento.'>Relleno Izquierdo</span><i class='mo-i'></i></span><div id='wyp-padding-left' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='padding-left-value' class='css-va' /><input type='text' id='padding-left-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='padding-right-group' class='op-g sl-o' data-css='padding-right' data-decimals='1' data-px='0,200' data-pc='0,100' data-em='0,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el relleno derecho (espacio) de un elemento.'>Relleno Derecho</span><i class='mo-i'></i></span><div id='wyp-padding-right' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='padding-right-value' class='css-va' /><input type='text' id='padding-right-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='padding-top-group' class='op-g sl-o' data-css='padding-top' data-decimals='1' data-px='0,200' data-pc='0,100' data-em='0,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el relleno superior (espacio) de un elemento.'>Relleno Superior</span><i class='mo-i'></i></span><div id='wyp-padding-top' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='padding-top-value' class='css-va' /><input type='text' id='padding-top-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='padding-bottom-group' class='op-g sl-o' data-css='padding-bottom' data-decimals='1' data-px='0,200' data-pc='0,100' data-em='0,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el relleno inferior (espacio) de un elemento.'>Relleno Inferior</span><i class='mo-i'></i></span><div id='wyp-padding-bottom' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='padding-bottom-value' class='css-va' /><input type='text' id='padding-bottom-after' class='css-un' /></div></div><div class='un-s'></div></div>
+				</div>
+
+				<div class='wyp-spacing-margin-section'>
+					<div id='margin-left-group' class='op-g sl-o' data-default='auto' data-css='margin-left' data-decimals='1' data-px='-50,200' data-pc='-100,100' data-em='-6,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el margen izquierdo de un elemento.'>Margen Izquierdo</span><i class='mo-i'></i></span><div id='wyp-margin-left' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='margin-left-value' class='css-va' /><input type='text' id='margin-left-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='margin-right-group' class='op-g sl-o' data-default='auto' data-css='margin-right' data-decimals='1' data-px='-50,200' data-pc='-100,100' data-em='-6,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el margen derecho de un elemento.'>Margen Derecho</span><i class='mo-i'></i></span><div id='wyp-margin-right' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='margin-right-value' class='css-va' /><input type='text' id='margin-right-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='margin-top-group' class='op-g sl-o' data-css='margin-top' data-decimals='1' data-px='-50,200' data-pc='-100,100' data-em='-6,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el margen superior de un elemento.'>Margen Superior</span><i class='mo-i'></i></span><div id='wyp-margin-top' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='margin-top-value' class='css-va' /><input type='text' id='margin-top-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='margin-bottom-group' class='op-g sl-o' data-css='margin-bottom' data-decimals='1' data-px='-50,200' data-pc='-100,100' data-em='-6,26'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el margen inferior de un elemento.'>Margen Inferior</span><i class='mo-i'></i></span><div id='wyp-margin-bottom' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='margin-bottom-value' class='css-va' /><input type='text' id='margin-bottom-after' class='css-un' /></div></div><div class='un-s'></div></div>
+				</div>
+
+			</div>
+		</li>
+
+		<li class='border-option'>
+			<h3>Bordes</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='border-type-group' class='op-g ra-o' data-css='border-type'><div class='op-c'><span class='op-l'><span class='di-btn' title=''>Tipo de Borde</span><i class='mo-i'></i>  </span><div class='ra-gr-5 ra-c' id='wyp-border-type'><div class="ra"><input type="radio" name="border-type" value="all"><label id="border-type-all">todos</label></div><div class="ra"><input type="radio" name="border-type" value="top"><label id="border-type-top">superior</label></div><div class="ra"><input type="radio" name="border-type" value="right"><label id="border-type-right">derecho</label></div><div class="ra"><input type="radio" name="border-type" value="bottom"><label id="border-type-bottom">inferior</label></div><div class="ra"><input type="radio" name="border-type" value="left"><label id="border-type-left">izquierdo</label></div></div></div></div>
+
+				<div class='wyp-border-all-section'>
+
+					<div class='option-group-class'>
+					<div id='border-color-group' class='op-g co-o' data-css='border-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the color of an element&#39;s four borders.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-border-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+					<div id='border-style-group' class='op-g ra-o' data-css='border-style'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el estilo de los cuatro bordes de un elemento.'>Estilo</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-border-style'><div class="ra"><input type="radio" name="border-style" value="none"><label id="border-style-none"><span class="yicon icon-no-alt"></span></label></div><div class="ra"><input type="radio" name="border-style" value="solid"><label id="border-style-solid"></label></div><div class="ra"><input type="radio" name="border-style" value="dotted"><label id="border-style-dotted"></label></div><div class="ra"><input type="radio" name="border-style" value="dashed"><label id="border-style-dashed"></label></div></div></div></div>
+					</div>
+
+					<div id='border-width-group' class='op-g sl-o' data-css='border-width' data-decimals='1' data-px='0,20' data-pc='0,100' data-em='0,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el ancho de los cuatro bordes de un elemento.'>Ancho</span><i class='mo-i'></i></span><div id='wyp-border-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-width-value' class='css-va' /><input type='text' id='border-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div>
+
+				<div class='wyp-border-top-section'>
+
+					<div class='option-group-class'>
+					<div id='border-top-color-group' class='op-g co-o' data-css='border-top-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the color of an element&#39;s top border.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-border-top-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+					<div id='border-top-style-group' class='op-g ra-o' data-css='border-top-style'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the style of an element&#39;s top border.'>Style</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-border-top-style'><div class="ra"><input type="radio" name="border-top-style" value="none"><label id="border-top-style-none"><span class="yicon icon-no-alt"></span></label></div><div class="ra"><input type="radio" name="border-top-style" value="solid"><label id="border-top-style-solid"></label></div><div class="ra"><input type="radio" name="border-top-style" value="dotted"><label id="border-top-style-dotted"></label></div><div class="ra"><input type="radio" name="border-top-style" value="dashed"><label id="border-top-style-dashed"></label></div></div></div></div>
+					</div>
+
+					<div id='border-top-width-group' class='op-g sl-o' data-css='border-top-width' data-decimals='1' data-px='0,20' data-pc='0,100' data-em='0,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the width of an element&#39;s top border.'>Width</span><i class='mo-i'></i></span><div id='wyp-border-top-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-top-width-value' class='css-va' /><input type='text' id='border-top-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div>
+
+				<div class='wyp-border-right-section'>
+
+					<div class='option-group-class'>
+					<div id='border-right-color-group' class='op-g co-o' data-css='border-right-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the color of an element&#39;s right border.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-border-right-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+					<div id='border-right-style-group' class='op-g ra-o' data-css='border-right-style'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the style of an element&#39;s right border.'>Style</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-border-right-style'><div class="ra"><input type="radio" name="border-right-style" value="none"><label id="border-right-style-none"><span class="yicon icon-no-alt"></span></label></div><div class="ra"><input type="radio" name="border-right-style" value="solid"><label id="border-right-style-solid"></label></div><div class="ra"><input type="radio" name="border-right-style" value="dotted"><label id="border-right-style-dotted"></label></div><div class="ra"><input type="radio" name="border-right-style" value="dashed"><label id="border-right-style-dashed"></label></div></div></div></div>
+					</div>
+
+					<div id='border-right-width-group' class='op-g sl-o' data-css='border-right-width' data-decimals='1' data-px='0,20' data-pc='0,100' data-em='0,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the width of an element&#39;s right border.'>Width</span><i class='mo-i'></i></span><div id='wyp-border-right-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-right-width-value' class='css-va' /><input type='text' id='border-right-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div>
+
+
+				<div class='wyp-border-bottom-section'>
+
+					<div class='option-group-class'>
+					<div id='border-bottom-color-group' class='op-g co-o' data-css='border-bottom-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the color of an element&#39;s bottom border.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-border-bottom-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+					<div id='border-bottom-style-group' class='op-g ra-o' data-css='border-bottom-style'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the style of an element&#39;s bottom border.'>Style</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-border-bottom-style'><div class="ra"><input type="radio" name="border-bottom-style" value="none"><label id="border-bottom-style-none"><span class="yicon icon-no-alt"></span></label></div><div class="ra"><input type="radio" name="border-bottom-style" value="solid"><label id="border-bottom-style-solid"></label></div><div class="ra"><input type="radio" name="border-bottom-style" value="dotted"><label id="border-bottom-style-dotted"></label></div><div class="ra"><input type="radio" name="border-bottom-style" value="dashed"><label id="border-bottom-style-dashed"></label></div></div></div></div>
+					</div>
+
+					<div id='border-bottom-width-group' class='op-g sl-o' data-css='border-bottom-width' data-decimals='1' data-px='0,20' data-pc='0,100' data-em='0,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the width of an element&#39;s bottom border.'>Width</span><i class='mo-i'></i></span><div id='wyp-border-bottom-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-bottom-width-value' class='css-va' /><input type='text' id='border-bottom-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div>
+
+
+				<div class='wyp-border-left-section'>
+
+					<div class='option-group-class'>
+					<div id='border-left-color-group' class='op-g co-o' data-css='border-left-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the color of an element&#39;s left border.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-border-left-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+					<div id='border-left-style-group' class='op-g ra-o' data-css='border-left-style'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the style of an element&#39;s left border.'>Style</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-border-left-style'><div class="ra"><input type="radio" name="border-left-style" value="none"><label id="border-left-style-none"><span class="yicon icon-no-alt"></span></label></div><div class="ra"><input type="radio" name="border-left-style" value="solid"><label id="border-left-style-solid"></label></div><div class="ra"><input type="radio" name="border-left-style" value="dotted"><label id="border-left-style-dotted"></label></div><div class="ra"><input type="radio" name="border-left-style" value="dashed"><label id="border-left-style-dashed"></label></div></div></div></div>
+					</div>
+
+					<div id='border-left-width-group' class='op-g sl-o' data-css='border-left-width' data-decimals='1' data-px='0,20' data-pc='0,100' data-em='0,3'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the width of an element&#39;s left border.'>Width</span><i class='mo-i'></i></span><div id='wyp-border-left-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-left-width-value' class='css-va' /><input type='text' id='border-left-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div>
+
+			</div>
+		</li>
+
+		<li class='border-radius-option'>
+			<h3>Radio del Borde</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='border-top-left-radius-group' class='op-g sl-o' data-css='border-top-left-radius' data-decimals='1' data-px='0,50' data-pc='0,50' data-em='0,6'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el radio de la esquina superior izquierda.'>Radio Sup. Izquierdo</span><i class='mo-i'></i></span><div id='wyp-border-top-left-radius' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-top-left-radius-value' class='css-va' /><input type='text' id='border-top-left-radius-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='border-top-right-radius-group' class='op-g sl-o' data-css='border-top-right-radius' data-decimals='1' data-px='0,50' data-pc='0,50' data-em='0,6'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el radio de la esquina superior derecha.'>Radio Sup. Derecho</span><i class='mo-i'></i></span><div id='wyp-border-top-right-radius' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-top-right-radius-value' class='css-va' /><input type='text' id='border-top-right-radius-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='border-bottom-left-radius-group' class='op-g sl-o' data-css='border-bottom-left-radius' data-decimals='1' data-px='0,50' data-pc='0,50' data-em='0,6'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el radio de la esquina inferior izquierda.'>Radio Inf. Izquierdo</span><i class='mo-i'></i></span><div id='wyp-border-bottom-left-radius' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-bottom-left-radius-value' class='css-va' /><input type='text' id='border-bottom-left-radius-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='border-bottom-right-radius-group' class='op-g sl-o' data-css='border-bottom-right-radius' data-decimals='1' data-px='0,50' data-pc='0,50' data-em='0,6'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el radio de la esquina inferior derecha.'>Radio Inf. Derecho</span><i class='mo-i'></i></span><div id='wyp-border-bottom-right-radius' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='border-bottom-right-radius-value' class='css-va' /><input type='text' id='border-bottom-right-radius-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+			</div>
+		</li>
+
+		<li class='position-option'>
+			<h3>Posicionamiento</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='z-index-group' class='op-g sl-o' data-default='auto' data-css='z-index' data-decimals='1' data-px='-10,1000' data-pc='-10,1000' data-em='-10,1000'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el orden de apilamiento de un elemento. Z-index solo funciona en elementos posicionados (absoluto, relativo o fijo).'>Z-Index</span><i class='mo-i'></i></span><div id='wyp-z-index' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='z-index-value' class='css-va' /><input type='text' id='z-index-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='position-group' class='op-g ra-o' data-css='position'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el tipo de método de posicionamiento utilizado para un elemento.'>Posición</span><i class='mo-i'></i>  </span><div class='ra-gr-5 ra-c' id='wyp-position'><div class="ra"><input type="radio" name="position" value="static"><label id="position-static">estática</label></div><div class="ra"><input type="radio" name="position" value="relative"><label id="position-relative">relativa</label></div><div class="ra"><input type="radio" name="position" value="absolute"><label id="position-absolute">absoluta</label></div><div class="ra"><input type="radio" name="position" value="fixed"><label id="position-fixed">fija</label></div><div class="ra"><input type="radio" name="position" value="sticky"><label id="position-sticky">pegajosa</label></div></div></div></div>
+
+				<div id='top-group' class='op-g sl-o' data-default='auto' data-css='top' data-decimals='1' data-px='-200,400' data-pc='0,100' data-em='-12,12'><div class='op-c'><span class='op-l'><span class='di-btn' title='For absolutely: positioned elements, the top property sets the top edge of an element to a unit above/below the top edge of its containing element.<br><br>For relatively: positioned elements, the top property sets the top edge of an element to a unit above/below its normal position.'>Top</span><i class='mo-i'></i></span><div id='wyp-top' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='top-value' class='css-va' /><input type='text' id='top-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='left-group' class='op-g sl-o' data-default='auto' data-css='left' data-decimals='1' data-px='-200,400' data-pc='0,100' data-em='-12,12'><div class='op-c'><span class='op-l'><span class='di-btn' title='For absolutely: positioned elements, the left property sets the left edge of an element to a unit to the left/right of the left edge of its containing element.<br><br>For relatively: positioned elements, the left property sets the left edge of an element to a unit to the left/right to its normal position.'>Left</span><i class='mo-i'></i></span><div id='wyp-left' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='left-value' class='css-va' /><input type='text' id='left-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='bottom-group' class='op-g sl-o' data-default='auto' data-css='bottom' data-decimals='1' data-px='-200,400' data-pc='0,100' data-em='-12,12'><div class='op-c'><span class='op-l'><span class='di-btn' title='For absolutely: positioned elements, the bottom property sets the bottom edge of an element to a unit above/below the bottom edge of its containing element.<br><br>For relatively: positioned elements, the bottom property sets the bottom edge of an element to a unit above/below its normal position.'>Bottom</span><i class='mo-i'></i></span><div id='wyp-bottom' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='bottom-value' class='css-va' /><input type='text' id='bottom-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='right-group' class='op-g sl-o' data-default='auto' data-css='right' data-decimals='1' data-px='-200,400' data-pc='0,100' data-em='-12,12'><div class='op-c'><span class='op-l'><span class='di-btn' title='For absolutely: positioned elements, the right property sets the right edge of an element to a unit to the left/right of the right edge of its containing element.<br><br>For relatively: positioned elements, the right property sets the right edge of an element to a unit to the left/right to its normal position.'>Right</span><i class='mo-i'></i></span><div id='wyp-right' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='right-value' class='css-va' /><input type='text' id='right-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+			</div>
+		</li>
+
+		<li class='size-option'>
+			<h3>Medidas</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='width-group' class='op-g sl-o' data-default='auto' data-css='width' data-decimals='1' data-px='0,500' data-pc='0,100' data-em='0,52'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el ancho de un elemento.'>Ancho</span><i class='mo-i'></i></span><div id='wyp-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='width-value' class='css-va' /><input type='text' id='width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='height-group' class='op-g sl-o' data-default='auto' data-css='height' data-decimals='1' data-px='0,500' data-pc='0,100' data-em='0,52'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la altura de un elemento'>Altura</span><i class='mo-i'></i></span><div id='wyp-height' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='height-value' class='css-va' /><input type='text' id='height-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='overflow-group' class='op-g ra-o' data-css='overflow'><div class='op-c'><span class='op-l'><span class='di-btn' title='Specifies what should happen if content overflows an element's box.'>Overflow</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-overflow'><div class="ra"><input type="radio" name="overflow" value="visible"><label id="overflow-visible">visible</label></div><div class="ra"><input type="radio" name="overflow" value="hidden"><label id="overflow-hidden">hidden</label></div><div class="ra"><input type="radio" name="overflow" value="scroll"><label id="overflow-scroll">scroll</label></div><div class="ra"><input type="radio" name="overflow" value="auto"><label id="overflow-auto">auto</label></div></div></div></div>
+
+				<div id='min-width-group' class='op-g sl-o' data-default='initial' data-css='min-width' data-decimals='1' data-px='0,500' data-pc='0,100' data-em='0,52'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el ancho mínimo de un elemento.'>Ancho Mín.</span><i class='mo-i'></i></span><div id='wyp-min-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='min-width-value' class='css-va' /><input type='text' id='min-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='max-width-group' class='op-g sl-o' data-default='none' data-css='max-width' data-decimals='1' data-px='0,500' data-pc='0,100' data-em='0,52'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el ancho máximo de un elemento.'>Ancho Máx.</span><i class='mo-i'></i></span><div id='wyp-max-width' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='max-width-value' class='css-va' /><input type='text' id='max-width-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='min-height-group' class='op-g sl-o' data-default='initial' data-css='min-height' data-decimals='1' data-px='0,500' data-pc='0,100' data-em='0,52'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la altura mínima de un elemento.'>Altura Mín.</span><i class='mo-i'></i></span><div id='wyp-min-height' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='min-height-value' class='css-va' /><input type='text' id='min-height-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='max-height-group' class='op-g sl-o' data-default='none' data-css='max-height' data-decimals='1' data-px='0,500' data-pc='0,100' data-em='0,52'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la altura máxima de un elemento.'>Altura Máx.</span><i class='mo-i'></i></span><div id='wyp-max-height' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='max-height-value' class='css-va' /><input type='text' id='max-height-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+
+			</div>
+		</li>
+
+		<li class='lists-option'>
+			<h3>Listas</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='list-style-type-group' class='op-g se-o' data-css='list-style-type'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el tipo de marcador de elemento de lista en una lista.'>Tipo de Lista</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"none","label":"ninguno", "category":""},{"value":"disc","label":"disco", "category":""},{"value":"circle","label":"círculo", "category":""},{"value":"decimal","label":"decimal", "category":""},{"value":"lower-alpha","label":"alfa minúscula", "category":""},{"value":"upper-alpha","label":"alfa mayúscula", "category":""},{"value":"upper-roman","label":"romano mayúscula", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-list-style-type' type='text' class='in-ac' value='' /><div id='ac-pl-list-style-type' class='ac-d'></div></div></div></div>
+
+				<div id='list-style-image-group' class='op-g in-o' data-css='list-style-image'><div class='op-c'><span class='op-l'><span class='di-btn' title='Reemplaza el marcador de elemento de lista con una imagen.'>Imagen de Lista</span><i class='mo-i'></i> </span><div class='in-wr'><input placeholder='ninguna' id='wyp-list-style-image' type='text' class='wyp-input' value='' /><span class='wyp-upload-btn wyp-gallery-btn'></span><span class='wyp-clear-btn yicon icon-no-alt'></span></div></div></div>
+
+				<div id='list-style-position-group' class='op-g ra-o' data-css='list-style-position'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica si los marcadores de elemento de lista deben aparecer dentro o fuera del flujo de contenido.'>Posición de Lista</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-list-style-position'><div class="ra"><input type="radio" name="list-style-position" value="inside"><label id="list-style-position-inside">dentro</label></div><div class="ra"><input type="radio" name="list-style-position" value="outside"><label id="list-style-position-outside">fuera</label></div></div></div></div>
+
+			</div>
+		</li><li class='transform-option'>
+				<h3>Transformaciones</h3>
+				<div class='wyp-t-cont'>
+
+					<div id='transform-type-group' class='op-g ra-o' data-css='transform-type'><div class='op-c'><span class='op-l'><span class='di-btn' title='Tipo de Transformación'>Tipo de Transformación</span><i class='mo-i'></i>  </span><div class='ra-gr-4 ra-c' id='wyp-transform-type'><div class="ra"><input type="radio" name="transform-type" value="move"><label id="transform-type-move">mover</label></div><div class="ra"><input type="radio" name="transform-type" value="rotate"><label id="transform-type-rotate">rotar</label></div><div class="ra"><input type="radio" name="transform-type" value="skew"><label id="transform-type-skew">inclinar</label></div><div class="ra"><input type="radio" name="transform-type" value="extra"><label id="transform-type-extra">extra</label></div></div></div></div>
+
+
+					<div class='wyp-transform-move-section'>
+
+						<div id='translate-x-transform-group' class='op-g sl-o' data-css='translate-x-transform' data-decimals='1' data-px='-256,256' data-pc='-256,256' data-em='-256,256'><div class='op-c'><span class='op-l'><span class='di-btn' title='Mover Horizontalmente'>Mover Horizontal</span><i class='mo-i'></i></span><div id='wyp-translate-x-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='translate-x-transform-value' class='css-va' /><input type='text' id='translate-x-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='translate-y-transform-group' class='op-g sl-o' data-css='translate-y-transform' data-decimals='1' data-px='-256,256' data-pc='-256,256' data-em='-256,256'><div class='op-c'><span class='op-l'><span class='di-btn' title='Mover Verticalmente'>Mover Vertical</span><i class='mo-i'></i></span><div id='wyp-translate-y-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='translate-y-transform-value' class='css-va' /><input type='text' id='translate-y-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					</div>
+
+					<div class='wyp-transform-rotate-section'>
+
+						<div id='rotatex-transform-group' class='op-g sl-o' data-css='rotatex-transform' data-decimals='1' data-px='-180,180' data-pc='-180,180' data-em='-180,180'><div class='op-c'><span class='op-l'><span class='di-btn' title='Rotar en el eje X'>Rotar X</span><i class='mo-i'></i></span><div id='wyp-rotatex-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='rotatex-transform-value' class='css-va' /><input type='text' id='rotatex-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='rotatey-transform-group' class='op-g sl-o' data-css='rotatey-transform' data-decimals='1' data-px='-180,180' data-pc='-180,180' data-em='-180,180'><div class='op-c'><span class='op-l'><span class='di-btn' title='Rotar en el eje Y'>Rotar Y</span><i class='mo-i'></i></span><div id='wyp-rotatey-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='rotatey-transform-value' class='css-va' /><input type='text' id='rotatey-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='rotatez-transform-group' class='op-g sl-o' data-css='rotatez-transform' data-decimals='1' data-px='-180,180' data-pc='-180,180' data-em='-180,180'><div class='op-c'><span class='op-l'><span class='di-btn' title='Rotar en el eje Z'>Rotar Z</span><i class='mo-i'></i></span><div id='wyp-rotatez-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='rotatez-transform-value' class='css-va' /><input type='text' id='rotatez-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					</div>
+
+					<div class='wyp-transform-skew-section'>
+
+						<div id='skew-x-transform-group' class='op-g sl-o' data-css='skew-x-transform' data-decimals='1' data-px='-180,180' data-pc='-180,180' data-em='-180,180'><div class='op-c'><span class='op-l'><span class='di-btn' title='Inclinar en el eje X'>Inclinar X</span><i class='mo-i'></i></span><div id='wyp-skew-x-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='skew-x-transform-value' class='css-va' /><input type='text' id='skew-x-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='skew-y-transform-group' class='op-g sl-o' data-css='skew-y-transform' data-decimals='1' data-px='-180,180' data-pc='-180,180' data-em='-180,180'><div class='op-c'><span class='op-l'><span class='di-btn' title='Inclinar en el eje Y'>Inclinar Y</span><i class='mo-i'></i></span><div id='wyp-skew-y-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='skew-y-transform-value' class='css-va' /><input type='text' id='skew-y-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					</div>
+
+					<div class='wyp-transform-extra-section'>
+
+						<div id='scale-transform-group' class='op-g sl-o' data-css='scale-transform' data-decimals='0.01' data-px='0,5' data-pc='0,5' data-em='0,5'><div class='op-c'><span class='op-l'><span class='di-btn' title='Escala el elemento.'>Escala</span><i class='mo-i'></i></span><div id='wyp-scale-transform' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='scale-transform-value' class='css-va' /><input type='text' id='scale-transform-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='perspective-group' class='op-g sl-o' data-css='perspective' data-decimals='1' data-px='0,1000' data-pc='0,100' data-em='0,62'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define la perspectiva para un elemento 3D.'>Perspectiva</span><i class='mo-i'></i></span><div id='wyp-perspective' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='perspective-value' class='css-va' /><input type='text' id='perspective-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					</div>
+
+			</div></li><li class='box-shadow-option'>
+			<h3>Sombra</h3>
+			<div class='wyp-t-cont'>
+
+				<div id='box-shadow-inset-group' class='op-g ra-o' data-css='box-shadow-inset'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define si la sombra está dentro o fuera.'>Posición</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-box-shadow-inset'><div class="ra"><input type="radio" name="box-shadow-inset" value="no"><label id="box-shadow-inset-no">fuera</label></div><div class="ra"><input type="radio" name="box-shadow-inset" value="inset"><label id="box-shadow-inset-inset">dentro</label></div></div></div></div>
+
+				<div id='box-shadow-color-group' class='op-g co-o' data-css='box-shadow-color'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el color de la sombra.'>Color</span><i class='mo-i'></i> </span><div class='co-in-bo'><input id='wyp-box-shadow-color' type='text' maxlength='22' size='22' class='co-p' value='' /><span class='wyp-color-background'><span class='co-sw-co'></span></span></div></div></div>
+
+				<div id='box-shadow-blur-radius-group' class='op-g sl-o' data-css='box-shadow-blur-radius' data-decimals='1' data-px='0,50' data-pc='0,50' data-em='0,50'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el radio de desenfoque de la sombra.'>Radio de Desenfoque</span><i class='mo-i'></i></span><div id='wyp-box-shadow-blur-radius' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='box-shadow-blur-radius-value' class='css-va' /><input type='text' id='box-shadow-blur-radius-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='box-shadow-spread-group' class='op-g sl-o' data-css='box-shadow-spread' data-decimals='1' data-px='-50,100' data-pc='-50,100' data-em='-50,100'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece el tamaño de la sombra.'>Propagación</span><i class='mo-i'></i></span><div id='wyp-box-shadow-spread' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='box-shadow-spread-value' class='css-va' /><input type='text' id='box-shadow-spread-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='box-shadow-horizontal-group' class='op-g sl-o' data-css='box-shadow-horizontal' data-decimals='1' data-px='-50,50' data-pc='-50,50' data-em='-50,50'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la longitud horizontal de la sombra.'>Longitud Horizontal</span><i class='mo-i'></i></span><div id='wyp-box-shadow-horizontal' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='box-shadow-horizontal-value' class='css-va' /><input type='text' id='box-shadow-horizontal-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div id='box-shadow-vertical-group' class='op-g sl-o' data-css='box-shadow-vertical' data-decimals='1' data-px='-50,50' data-pc='-50,50' data-em='-50,50'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la longitud vertical de la sombra.'>Longitud Vertical</span><i class='mo-i'></i></span><div id='wyp-box-shadow-vertical' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='box-shadow-vertical-value' class='css-va' /><input type='text' id='box-shadow-vertical-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+			</div>
+		</li><li class='filter-option'>
+				<h3>Filtros</h3>
+				<div class='wyp-t-cont'>
+					
+					<div id='filter-type-group' class='op-g ra-o' data-css='filter-type'><div class='op-c'><span class='op-l'><span class='di-btn' title=''>Tipo de Filtro</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-filter-type'><div class="ra"><input type="radio" name="filter-type" value="color-effects"><label id="filter-type-color-effects">efectos</label></div><div class="ra"><input type="radio" name="filter-type" value="color-adjustment"><label id="filter-type-color-adjustment">ajustes</label></div></div></div></div>
+
+
+					<div class='wyp-filter-color-adjustment-section'>
+
+						<div id='brightness-filter-group' class='op-g sl-o' data-css='brightness-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Ajusta el brillo.'>Brillo</span><i class='mo-i'></i></span><div id='wyp-brightness-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='brightness-filter-value' class='css-va' /><input type='text' id='brightness-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='contrast-filter-group' class='op-g sl-o' data-css='contrast-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Ajusta el contraste.'>Contraste</span><i class='mo-i'></i></span><div id='wyp-contrast-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='contrast-filter-value' class='css-va' /><input type='text' id='contrast-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='hue-rotate-filter-group' class='op-g sl-o' data-css='hue-rotate-filter' data-decimals='1' data-px='0,360' data-pc='0,360' data-em='0,360'><div class='op-c'><span class='op-l'><span class='di-btn' title='Aplica una rotación de tono.'>Rotación de Tono</span><i class='mo-i'></i></span><div id='wyp-hue-rotate-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='hue-rotate-filter-value' class='css-va' /><input type='text' id='hue-rotate-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='saturate-filter-group' class='op-g sl-o' data-css='saturate-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Ajusta la saturación.'>Saturación</span><i class='mo-i'></i></span><div id='wyp-saturate-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='saturate-filter-value' class='css-va' /><input type='text' id='saturate-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					</div>
+
+					<div class='wyp-filter-color-effects-section'>
+
+						<div id='blur-filter-group' class='op-g sl-o' data-css='blur-filter' data-decimals='0.01' data-px='0,10' data-pc='0,10' data-em='0,10'><div class='op-c'><span class='op-l'><span class='di-btn' title='Aplica un desenfoque gaussiano.'>Desenfoque</span><i class='mo-i'></i></span><div id='wyp-blur-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='blur-filter-value' class='css-va' /><input type='text' id='blur-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='grayscale-filter-group' class='op-g sl-o' data-css='grayscale-filter' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Convierte a escala de grises.'>Escala de Grises</span><i class='mo-i'></i></span><div id='wyp-grayscale-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='grayscale-filter-value' class='css-va' /><input type='text' id='grayscale-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='invert-filter-group' class='op-g sl-o' data-css='invert-filter' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Invierte los colores.'>Invertir</span><i class='mo-i'></i></span><div id='wyp-invert-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='invert-filter-value' class='css-va' /><input type='text' id='invert-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+						<div id='sepia-filter-group' class='op-g sl-o' data-css='sepia-filter' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Convierte a sepia.'>Sepia</span><i class='mo-i'></i></span><div id='wyp-sepia-filter' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='sepia-filter-value' class='css-va' /><input type='text' id='sepia-filter-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					</div>
+
+			</div></li>
+
+		<li class='extra-option'>
+			<h3>Extra</h3>
+			<div class='wyp-t-cont'>
+
+					<div id='display-group' class='op-g se-o' data-css='display'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el tipo de caja utilizada para un elemento.'>Display</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"block","label":"bloque", "category":""},{"value":"flex","label":"flex", "category":""},{"value":"grid","label":"grid", "category":""},{"value":"inline","label":"en línea", "category":""},{"value":"inline-block","label":"bloque en línea", "category":""},{"value":"inline-flex","label":"flex en línea", "category":""},{"value":"inline-grid","label":"grid en línea", "category":""},{"value":"table-cell","label":"celda de tabla", "category":""},{"value":"none","label":"ninguno", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-display' type='text' class='in-ac' value='' /><div id='ac-pl-display' class='ac-d'></div></div></div></div>
+
+					<div class='flex-container-section'>
+					<div id='flex-direction-group' class='op-g ra-o' data-css='flex-direction'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica la dirección de los elementos flexibles.'>Dirección</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-flex-direction'><div class="ra"><input type="radio" name="flex-direction" value="row"><label id="flex-direction-row">horizontal</label></div><div class="ra"><input type="radio" name="flex-direction" value="column"><label id="flex-direction-column">vertical</label></div></div></div></div>
+
+					<div class='option-group-class'>
+					<div id='justify-content-group' class='op-g se-o' data-css='justify-content'><div class='op-c'><span class='op-l'><span class='di-btn' title='Alinea los elementos del contenedor flexible cuando no usan todo el espacio disponible en el eje principal (horizontalmente).'>Justificar Contenido</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"normal","label":"normal", "category":""},{"value":"flex-start","label":"flex-start", "category":""},{"value":"flex-end","label":"flex-end", "category":""},{"value":"center","label":"center", "category":""},{"value":"space-between","label":"space-between", "category":""},{"value":"space-around","label":"space-around", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-justify-content' type='text' class='in-ac' value='' /><div id='ac-pl-justify-content' class='ac-d'></div></div></div></div>
+
+					<div id='align-items-group' class='op-g se-o' data-css='align-items'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica la alineación por defecto para los elementos dentro del contenedor flexible.'>Alinear Elementos</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"normal","label":"normal", "category":""},{"value":"stretch","label":"stretch", "category":""},{"value":"center","label":"center", "category":""},{"value":"flex-start","label":"flex-start", "category":""},{"value":"flex-end","label":"flex-end", "category":""},{"value":"baseline","label":"baseline", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-align-items' type='text' class='in-ac' value='' /><div id='ac-pl-align-items' class='ac-d'></div></div></div></div>
+					</div>
+
+					<div id='flex-wrap-group' class='op-g ra-o' data-css='flex-wrap'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica si los elementos flexibles deben ajustarse o no.'>Ajuste de Hijos</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-flex-wrap'><div class="ra"><input type="radio" name="flex-wrap" value="nowrap"><label id="flex-wrap-nowrap">no ajustar</label></div><div class="ra"><input type="radio" name="flex-wrap" value="wrap"><label id="flex-wrap-wrap">ajustar</label></div></div></div></div>
+					</div>
+
+					<div class='flex-child-section'>
+					<div id='flex-group' class='op-g ra-o' data-css='flex'><div class='op-c'><span class='op-l'><span class='di-btn' title='Establece la longitud flexible en elementos flexibles.'>Tamaño</span><i class='mo-i'></i>  </span><div class='ra-gr-3 ra-c' id='wyp-flex'><div class="ra"><input type="radio" name="flex" value="0 1 auto"><label id="flex-0-1-auto">Encoger</label></div><div class="ra"><input type="radio" name="flex" value="1 1 0%"><label id="flex-1-1-0%">Crecer</label></div><div class="ra"><input type="radio" name="flex" value="0 0 auto"><label id="flex-0-0-auto">Fijo</label></div></div></div></div>
+
+					<div id='align-self-group' class='op-g se-o' data-css='align-self'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica la alineación para el elemento seleccionado dentro del contenedor flexible.'>Alinear</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"auto","label":"auto", "category":""},{"value":"stretch","label":"stretch", "category":""},{"value":"center","label":"center", "category":""},{"value":"flex-start","label":"flex-start", "category":""},{"value":"flex-end","label":"flex-end", "category":""},{"value":"baseline","label":"baseline", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-align-self' type='text' class='in-ac' value='' /><div id='ac-pl-align-self' class='ac-d'></div></div></div></div>
+
+				</div>
+
+				<div class='grid-section'>
+
+					<div id='grid-template-columns-group' class='op-g gr-o' data-css='grid-template-columns'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el número (y los anchos) de las columnas en un diseño de cuadrícula.'>Columnas</span><i class='mo-i'></i></span><input id='wyp-grid-template-columns' class='gr-bu-in' type='text' value='' /><div class='gr-bu-ar'></div></div></div>
+
+					<div id='grid-template-rows-group' class='op-g gr-o' data-css='grid-template-rows'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica el número (y las alturas) de las filas en un diseño de cuadrícula.'>Filas</span><i class='mo-i'></i></span><input id='wyp-grid-template-rows' class='gr-bu-in' type='text' value='' /><div class='gr-bu-ar'></div></div></div>
+
+					<div class='option-group-class'>
+					<div id='align-content-group' class='op-g se-o' data-css='align-content'><div class='op-c'><span class='op-l'><span class='di-btn' title='Modifica el comportamiento de la propiedad flex-wrap. Es similar a align-items, pero en lugar de alinear elementos flexibles, alinea líneas flexibles.'>Alinear</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"normal","label":"normal", "category":""},{"value":"stretch","label":"stretch", "category":""},{"value":"center","label":"center", "category":""},{"value":"flex-start","label":"flex-start", "category":""},{"value":"flex-end","label":"flex-end", "category":""},{"value":"space-between","label":"space-between", "category":""},{"value":"space-around","label":"space-around", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-align-content' type='text' class='in-ac' value='' /><div id='ac-pl-align-content' class='ac-d'></div></div></div></div>
+
+					<div id='justify-content1-group' class='op-g se-o' data-css='justify-content1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Alinea los elementos del contenedor flexible cuando no usan todo el espacio disponible en el eje principal (horizontalmente).'>Justificar</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"normal","label":"normal", "category":""},{"value":"flex-start","label":"flex-start", "category":""},{"value":"flex-end","label":"flex-end", "category":""},{"value":"center","label":"center", "category":""},{"value":"space-between","label":"space-between", "category":""},{"value":"space-around","label":"space-around", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-justify-content1' type='text' class='in-ac' value='' /><div id='ac-pl-justify-content1' class='ac-d'></div></div></div></div>
+					</div>
+
+					<div id='column-gap-group' class='op-g sl-o' data-default='normal' data-css='column-gap' data-decimals='1' data-px='0,100' data-pc='0,100' data-em='0,100'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el tamaño del espacio entre las columnas en un diseño de cuadrícula.'>Espacio entre Columnas</span><i class='mo-i'></i></span><div id='wyp-column-gap' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='column-gap-value' class='css-va' /><input type='text' id='column-gap-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+					<div id='row-gap-group' class='op-g sl-o' data-default='normal' data-css='row-gap' data-decimals='1' data-px='0,100' data-pc='0,100' data-em='0,100'><div class='op-c'><span class='op-l'><span class='di-btn' title='Define el tamaño del espacio entre las filas en un diseño de cuadrícula.'>Espacio entre Filas</span><i class='mo-i'></i></span><div id='wyp-row-gap' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='row-gap-value' class='css-va' /><input type='text' id='row-gap-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				</div>
+
+				<div class='option-group-class'>
+				<div id='float-group' class='op-g ra-o' data-css='float'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica cómo debe flotar un elemento.'>Flotar</span><i class='mo-i'></i>  </span><div class='ra-gr-3 ra-c' id='wyp-float'><div class="ra"><input type="radio" name="float" value="none"><label id="float-none">ninguno</label></div><div class="ra"><input type="radio" name="float" value="left"><label id="float-left">izquierda</label></div><div class="ra"><input type="radio" name="float" value="right"><label id="float-right">derecha</label></div></div></div></div>
+
+				<div id='clear-group' class='op-g ra-o' data-css='clear'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica qué elementos pueden flotar al lado del elemento limpiado y en qué lado.'>Limpiar</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-clear'><div class="ra"><input type="radio" name="clear" value="none"><label id="clear-none">ninguno</label></div><div class="ra"><input type="radio" name="clear" value="both"><label id="clear-both">ambos</label></div></div></div></div>
+				</div>
+
+				<div id='visibility-group' class='op-g ra-o' data-css='visibility'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica si un elemento es visible o no.'>Visibilidad</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-visibility'><div class="ra"><input type="radio" name="visibility" value="visible"><label id="visibility-visible"><span class="yicon icon-visibility"></span></label></div><div class="ra"><input type="radio" name="visibility" value="hidden"><label id="visibility-hidden"><span class="yicon icon-hidden"></span></label></div></div></div></div>
+
+				<div id='opacity-group' class='op-g sl-o' data-css='opacity' data-decimals='0.01' data-px='0,1' data-pc='0,1' data-em='0,1'><div class='op-c'><span class='op-l'><span class='di-btn' title='Sets the opacity level for an element.'>Opacity</span><i class='mo-i'></i></span><div id='wyp-opacity' class='sl-d'><div class='sl-cu'></div></div><div class='wyp-after'><input type='text' id='opacity-value' class='css-va' /><input type='text' id='opacity-after' class='css-un' /></div></div><div class='un-s'></div></div>
+
+				<div class='option-group-class'>
+				<div id='cursor-group' class='op-g se-o' data-css='cursor'><div class='op-c'><span class='op-l'><span class='di-btn' title='Specifies the type of cursor to be displayed when pointing on an element.'>Cursor</span><i class='mo-i'></i></span><textarea tabindex='-1' disabled='disabled'>[{"value":"auto","label":"auto", "category":""},{"value":"alias","label":"alias", "category":""},{"value":"all-scroll","label":"All Scroll", "category":""},{"value":"copy","label":"Copy", "category":""},{"value":"crosshair","label":"CrossHair", "category":""},{"value":"grab","label":"Grab", "category":""},{"value":"grabbing","label":"Grabbing", "category":""},{"value":"help","label":"Help", "category":""},{"value":"not-allowed","label":"Not Allowed", "category":""},{"value":"pointer","label":"Pointer", "category":""},{"value":"progress","label":"Progress", "category":""},{"value":"text","label":"Text", "category":""},{"value":"wait","label":"Wait", "category":""},{"value":"zoom-in","label":"Zoom In", "category":""},{"value":"zoom-out","label":"Zoom Out", "category":""}]</textarea><div class='ac-p-d'><input id='wyp-cursor' type='text' class='in-ac' value='' /><div id='ac-pl-cursor' class='ac-d'></div></div></div></div>
+
+				<div id='pointer-events-group' class='op-g ra-o' data-css='pointer-events'><div class='op-c'><span class='op-l'><span class='di-btn' title='Especifica si un elemento puede ser el objetivo de eventos de puntero.'>Eventos de Puntero</span><i class='mo-i'></i>  </span><div class='ra-gr-2 ra-c' id='wyp-pointer-events'><div class="ra"><input type="radio" name="pointer-events" value="auto"><label id="pointer-events-auto">auto</label></div><div class="ra"><input type="radio" name="pointer-events" value="none"><label id="pointer-events-none">ninguno</label></div></div></div></div>
+				</div>
+
+			</div>
+
+		</li>
+
+	</ul></form><div class='wyp-panel-no-selection'><div class='starter-notice'><div class='wyp-hand'></div><div class='wyp-hand-after'></div>Selecciona cualquier elemento en la página para comenzar a hacer cambios.</div></div><div class='ed-pnl-footer'>
+            <h3><a tabindex='-1' target='_blank' href='https://github.com/HectorDanielAyarachiFuentes'>Hector Daniel Ayarachi Fuentes 🏴‍☠️</a></h3>
+            <span class='yicon icon-admin-collapse wyp-panel-hide' data-toggle='tooltip' data-placement='left' title='Ocultar Paneles <span class="wyp-shortcut-char">(H)</span>'></span>
+        </div></div></div>
+	<div class="editor-leftbar">
+		<div data-toggle='tooltip-bar' data-placement='right' title='Inspector de Elementos <span class="wyp-s-shortcut">(V)</span>' class="leftbar-button cursor-main-btn wyp-selector-mode active"><span class="no-aiming-icon"></span><span class="aiming-icon"></span><span class="sharp-selector-icon"></span></div>
+		<div data-toggle='tooltip-bar' data-placement='right' title='Navegador <span class="wyp-s-shortcut">(N)</span><span class="wyp-tooltip-shortcut">Encuentra elementos fácilmente.</span>' class="leftbar-button wyp-navigation-btn"><span class="navigation-icon"></span></div>
+				<div data-toggle='tooltip-bar' data-placement='right' title='Editor CSS <span class="wyp-s-shortcut">(E)</span><span class="wyp-tooltip-shortcut">Edita códigos de estilo.</span>' class="leftbar-button css-editor-btn"><span class="css-editor-icon"></span></div>
+				<div data-toggle='tooltip-bar' data-placement='right' title='Modo Responsivo <span class="wyp-s-shortcut">(R)</span><span class="wyp-tooltip-shortcut">Edita para tamaños de pantalla específicos.</span>' class="leftbar-button wyp-responsive-btn active"><span class="responsive-icon"></span></div>
+		<div data-toggle='tooltip-bar' data-placement='right' title='Herramienta de Medición <span class="wyp-s-shortcut">(M)</span><span class="wyp-tooltip-shortcut">Mide elementos.</span>' class="leftbar-button wyp-ruler-btn"><span class="ruler-icon"></span></div>
+		<div data-toggle='tooltip-bar' data-placement='right' title='Wireframe <span class="wyp-s-shortcut">(W)</span><span class="wyp-tooltip-shortcut">Trabaja en el diseño fácilmente.</span>' class="leftbar-button wyp-wireframe-btn"><span class="wireframe-icon"></span></div>
+		<div data-toggle='tooltip-bar' data-placement='right' title='Información de Diseño <span class="wyp-s-shortcut">(D)</span><span class="wyp-tooltip-shortcut">Información de tipografía.</span>' class="leftbar-button info-btn"><span class="design-information-icon"></span></div>
+
+				<div data-toggle='tooltip-bar' data-placement='right' title='Gestor de Animaciones <span class="wyp-s-shortcut">(A)</span><span class="wyp-tooltip-shortcut">Gestiona animaciones visualmente.</span>' class="leftbar-button animation-manager-btn"><span class="animation-manager-icon"></span></div>
+		
+		<div data-toggle='tooltip-bar' data-placement='right' title='Deshacer <span class="wyp-tooltip-shortcut">CMD + Z</span>' class="leftbar-button top-area-center undo-btn"><span class="undo-icon"></span></div>
+		<div data-toggle='tooltip-bar' data-placement='right' title='Rehacer <span class="wyp-tooltip-shortcut">CMD + Y</span>' class="leftbar-button redo-btn"><span class="redo-icon"></span></div>
+
+				<div class="leftbar-button left-menu-btn"><span class="setting-icon"></span></div>
+		
+		<div class="left-menu-sublist inspector-sublist">
+		<ul>
+			<li class="inspector-sublist-cursor" data-cursor-action="cursor">Cursor <i>(navegar)</i></li>
+			<li class="inspector-sublist-default active" data-cursor-action="default">Inspector Flexible</li>
+			<li class="inspector-sublist-single" data-cursor-action="single">Inspector Único</li>
+		</ul>
+		</div>
+
+				<div class="left-menu-sublist interface-settings">
+		<ul>
+
+			<li class="fixed_left_bar_checkbox">Fijar Barra Izquierda <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="fixed_right_panel_checkbox">Fijar Panel Derecho <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="hide_premium_options_checkbox wyp-lite" data-toggle='tooltip-bar' data-placement='right' title='<span class="wyp-tooltip-shortcut2">Oculta todas las funciones premium en la versión gratuita.</span>'>Ocultar Funciones Premium <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="show_css_selector_checkbox" data-toggle='tooltip-bar' data-placement='right' title='<span class="wyp-tooltip-shortcut2">Muestra siempre el selector del elemento seleccionado.</span>'>Mostrar Siempre el Selector de Elemento <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="left-sublist-border"></li>
+
+			<li class="smart_responsive_technology_checkbox" data-toggle='tooltip-bar' data-placement='right' title='<span class="wyp-tooltip-shortcut2">Esta función detecta automáticamente los estilos que pueden dañar el diseño responsivo y los limita con tamaños de pantalla especiales.</span>'>Auto Responsivo <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="append_auto_comments_checkbox" data-toggle='tooltip-bar' data-placement='right' title='<span class="wyp-tooltip-shortcut2">Genera comentarios CSS para cada selector para que el código CSS sea legible.</span>'>Comentarios CSS Automáticos <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="smart_important_tag_checkbox" data-toggle='tooltip-bar' data-placement='right' title='<span class="wyp-tooltip-shortcut2">Añade la etiqueta !important a las reglas CSS si es necesario.</span>'>Etiqueta !important Automática <label class="interface-settings-switch"><input type="checkbox"><span class="interface-settings-slider"></span></label></li>
+
+			<li class="basic hide-panel-hint"><strong>Consejo</strong>: Oculta los paneles del editor con la tecla H.</li>
+
+		</ul>
+		</div>
+		
+		<div class="advanced-info-box">
+			<div class="advanced-info-box-menu">
+				<span class="advance-info-btns element-btn">Elemento</span> <span class="advance-info-btns design-btn">Página</span>
+			</div>
+			<div class="advanced-info-box-inner">
+
+				<div class="typography-content advanced-info-box-content">
+
+					<h3>Esquema de Color</h3>
+					<div class="info-color-scheme-list">
+					</div>
+
+					<h3 class="no-top">Tipografía</h3>
+					<ul class="info-basic-typography-list">
+					</ul>
+
+					<h3>Familias de Fuentes</h3>
+					<ul class="info-font-family-list">
+					</ul>
+
+					<h3 class="page-assets-h3">Recursos de la Página</h3>
+					<div class="info-image-list">
+					</div>
+
+					<h3 id="animations-heading">Animaciones</h3>
+					<ul class="info-animation-list">
+					</ul>
+
+				</div>
+
+				<div class="element-content advanced-info-box-content">
+
+					<div class="info-element-selected-section">
+
+						<div class="info-element-selector-section">
+							<h3 class="no-top">Selector CSS</h3>
+							<ul class="info-element-selector-list">
+							</ul>
+						</div>
+
+						<h3>General</h3>
+						<ul class="info-element-general">
+						</ul>
+
+						<div class="info-element-classes-section">
+							<h3>Clases</h3>
+							<ul class="info-element-class-list">
+							</ul>
+						</div>
+
+						<div class="info-element-accessibility-section">
+							<h3>Accesibilidad</h3>
+							<ul class="info-element-accessibility">
+							</ul>
+						</div>
+
+						<h3>Código DOM</h3>
+						<textarea disabled="disabled" class="info-element-dom"></textarea>
+
+					</div>
+
+					<p class="info-no-element-selected">Por favor, selecciona un elemento para mostrar información.</p>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div id="leftAreaEditor">
+			<div id="cssData"></div>
+			<div id="cssEditorBar">
+				<span class="yicon wyp-css-close-btn icon-no-alt" title='Hide (ESC)'></span>
+				<span class="editor-tabs single-tab" data-type-value="single">Single<i></i></span>
+				<span class="editor-tabs template-tab" data-type-value="template">Template<i></i></span>
+				<span class="editor-tabs global-tab" data-type-value="global">Global<i></i></span>
+				<div class="editor-tab-border"></div>
+				<span class="wyp-css-editor-detach yicon icon-external"></span>
+			</div>
+			<div class="unvalid-css-error">Error: <span></span></div>
+		</div>
+
+
+		<div id="layer-tree">
+			<div id='layer-tree-title'>Navegador <span id="search-css-selector"></span></div>
+		</div>
+
+	</div>
+
+	<div class="wyp-right-panel-placeholder"></div>
+	<div class="breakpoint-bar"></div>
+
+	<div class="metric-left-border"></div>
+	<div class="metric-top-border"></div>
+	<div class="metric-top-tooltip"></div>
+	<div class="metric-left-tooltip"></div>
+
+	<div class="unvalid-css-cover"></div>
+
+
+	<div id="selector-editor-box">
+		<p class="selector-editor-notice">Presiona Enter para seleccionar, ESC para cancelar.</p>
+		<input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" type='text' class='wyp-selector-editor' placeholder='Buscar por clase, ID o etiqueta HTML.' id='wyp-selector-editor' />
+		<ul id="autocomplate-selector-list"><li>a</li></ul>
+	</div>
+	<div id="selector-editor-background"></div>
+
+	<div id="yellow-pencil-iframe-data"><!-- <style class="wyp-inline-data" id="wyp-styles-area" data-source-mode="global"></style><style class="wyp-inline-data" data-source-mode="template"></style><style class="wyp-inline-data" data-source-mode="single"></style><div id="wyp-animate-data"><style></div> --></div>
+</body>
+</html>
