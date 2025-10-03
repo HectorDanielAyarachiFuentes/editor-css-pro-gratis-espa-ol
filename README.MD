@@ -66,3 +66,9 @@ Es importante saber que, por razones de seguridad y políticas de contenido, alg
   <img src="https://github.com/HectorDanielAyarachiFuentes/editor-css-pro-gratis-espa-ol/blob/main/img-readme/facebooknopermitecambiargoogleperolagranmayoriasi.png?raw=true" alt="Páginas que no permiten el editor" width="600"/>
   <em>Ejemplo del visor de errores de consola de extensiones.</em>
 </p>
+
+## ¡Gracias por usar Editor CSS Pro!
+
+Espero que disfrutes personalizando la web tanto como yo disfruto desarrollando esta herramienta. Si tienes ideas, sugerencias o encuentras un error, no dudes en abrir un *issue* en este repositorio.
+
+**¡Feliz edición!**
